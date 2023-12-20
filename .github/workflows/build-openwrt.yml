@@ -61,12 +61,12 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: Patch source code
-      run: |
-        cp Add-support-to-Xiaomi-AX3000T.patch openwrt/
-        cd openwrt
-        git apply --check Add-support-to-Xiaomi-AX3000T.patch
-        git apply Add-support-to-Xiaomi-AX3000T.patch
+#    - name: Patch source code
+#      run: |
+#        cp Add-support-to-Xiaomi-AX3000T.patch openwrt/
+#        cd openwrt
+#        git apply --check Add-support-to-Xiaomi-AX3000T.patch
+#        git apply Add-support-to-Xiaomi-AX3000T.patch
 
     - name: Load custom feeds
       run: |
