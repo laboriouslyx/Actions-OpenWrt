@@ -59,14 +59,16 @@ jobs:
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
+        cd openwrt
+        git reset --hard v23.05.2
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-#    - name: Patch source code
-#      run: |
-#        cp Add-support-to-Xiaomi-AX3000T.patch openwrt/
-#        cd openwrt
-#        git apply --check Add-support-to-Xiaomi-AX3000T.patch
-#        git apply Add-support-to-Xiaomi-AX3000T.patch
+    - name: Patch source code
+      run: |
+        cp 0001-Add-support-to-Xiaomi-AX3000T.patch openwrt/
+        cd openwrt
+        git apply --check 0001-Add-support-to-Xiaomi-AX3000T.patch
+        git apply 0001-Add-support-to-Xiaomi-AX3000T.patch
 
     - name: Load custom feeds
       run: |
@@ -100,8 +102,7 @@ jobs:
       id: package
       run: |
         cd openwrt
-        make defconfig
-        make download -j8
+        make -j$(nproc) download
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
