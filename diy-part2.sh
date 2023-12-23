@@ -17,4 +17,4 @@ sed -i 's/192.168.1.1/192.168.31.1/g' package/base-files/files/bin/config_genera
 #git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
 #git clone https://github.com/chinaboy2345/luci-app-ramfree.git package/luci-app-ramfree
 #git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go	
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
