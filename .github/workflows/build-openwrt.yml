@@ -188,8 +188,10 @@ jobs:
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
+        token: ${{ secrets.ACTIONS_TRIGGER_PAT }}
         retain_days: 1
         keep_minimum_runs: 3
+        delete_workflow_pattern: build-openwrt.yml
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.1.0
