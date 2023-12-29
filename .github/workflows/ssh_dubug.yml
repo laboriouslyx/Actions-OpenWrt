@@ -1,0 +1,32 @@
+name: 使用ssh调试配置
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 检测配置
+      uses: actions/checkout@main
+
+    - name: 初始化环境
+      run: |
+        sudo timedatectl set-timezone "$TZ"
+        mkdir result
+
+    - name: 启用ssh
+      uses: P3TERX/ssh2actions@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_TRIGGER_PAT }}
+
+    - name: 上传调试结果
+      uses: actions/upload-artifact@main
+      with:
+        name: 调试结果
+        path: result
